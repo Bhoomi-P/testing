@@ -19,5 +19,4 @@ resources:
 
 steps:
   - checkout: self
-  - checkout: testing
   - script: dir $(Build.SourcesDirectory)
