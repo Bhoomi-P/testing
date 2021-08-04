@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- dev
+
+pool:
+  vmImage: 'windows-latest'
+
+resources:
+  repositories:
+  - repository: test # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: github.com_Bhoomi-P
+    name: Bhoomi-P/testing
+    branch: dev
+
+steps:
+  - checkout: self
+  - checkout: test
+  - script: dir $(Build.SourcesDirectory)
