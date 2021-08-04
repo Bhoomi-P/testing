@@ -15,7 +15,7 @@ resources:
     type: github
     endpoint: github.com_Bhoomi-P
     name: Bhoomi-P/testing
-    branch: dev
+#    branch: dev
 
 steps:
 - checkout: self
