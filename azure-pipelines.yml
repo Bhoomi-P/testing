@@ -19,5 +19,5 @@ resources:
 
 steps:
   - checkout: self
-  - checkout: test
+  - checkout: testing
   - script: dir $(Build.SourcesDirectory)
