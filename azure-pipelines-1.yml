@@ -18,6 +18,5 @@ resources:
     branch: dev
 
 steps:
-  - checkout: self
-  - checkout: testing
-  - script: dir $(Build.SourcesDirectory)
+  - checkout
+  - run: git checkout dev
