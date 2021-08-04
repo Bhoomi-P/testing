@@ -18,6 +18,11 @@ resources:
     branch: dev
 
 steps:
-  - checkout: self
-  - checkout: testing
-  - script: dir $(Build.SourcesDirectory)
+- checkout: self
+- script: dir $(Build.SourcesDirectory)
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
