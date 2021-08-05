@@ -3,29 +3,73 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: 'Ubuntu-16.04'
-    continueOnError: true
-    steps:
-    - script: echo "hello to my first Build"
+      vmImage: 'windows-latest'
+
+resources:
+  repositories:
+  - repository: test # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: github.com_Bhoomi-P
+    name: Bhoomi-P/testing
+    branch: dev
+
+steps:
+- checkout: self
+- script: dir $(Build.SourcesDirectory)
+
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
+
 - stage: dev_deploy
   jobs:
   - deployment: dev_deploy
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'dev-hello'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo "hello, dev world !!!"
+        pool:
+      vmImage: 'windows-latest'
+
+resources:
+  repositories:
+  - repository: test # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: github.com_Bhoomi-P
+    name: Bhoomi-P/testing
+    branch: dev
+
+steps:
+- checkout: self
+- script: dir $(Build.SourcesDirectory)
+
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
+
 - stage: qa_deploy
   jobs:
   - deployment: qa_deploy
     pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'qa-hello'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo "hello, qa world !!!"
+      vmImage: 'windows-latest'
+
+resources:
+  repositories:
+  - repository: test # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: github.com_Bhoomi-P
+    name: Bhoomi-P/testing
+    branch: dev
+
+steps:
+- checkout: self
+- script: dir $(Build.SourcesDirectory)
+
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
