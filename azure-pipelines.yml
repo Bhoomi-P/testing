@@ -27,7 +27,7 @@ steps:
 - stage: dev_deploy
   jobs:
   - deployment: dev_deploy
-        pool:
+    pool:
       vmImage: 'windows-latest'
 
 resources:
