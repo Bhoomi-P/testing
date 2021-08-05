@@ -5,6 +5,15 @@
 
 trigger:
 - dev
+- main
+- prod
+
+pr:
+  branches:
+    include:
+      - main
+      - dev
+      - prod
 
 pool:
   vmImage: 'windows-latest'
