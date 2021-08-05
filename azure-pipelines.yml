@@ -7,14 +7,16 @@ trigger:
 - dev
 - main
 - prod
+stages:
 
-pr:
-  branches:
-    include:
-      - main
-      - dev
-      - prod
-
+– stage: Build
+  jobs:
+  – job: Build
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    continueOnError: true
+    steps:
+    – script: echo "hello to my first Build"
 pool:
   vmImage: 'windows-latest'
 
