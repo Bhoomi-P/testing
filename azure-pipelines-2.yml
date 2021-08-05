@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- prod
+
+pool:
+  vmImage: ubuntu-latest
+
+
+resources:
+  repositories:
+  - repository: test # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: github.com_Bhoomi-P
+    name: Bhoomi-P/testing
+    branch: prod
+
+steps:
+- checkout: self
+- script: dir $(Build.SourcesDirectory)
+
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
