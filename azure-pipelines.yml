@@ -5,18 +5,7 @@
 
 trigger:
 - dev
-- main
-- prod
-stages:
 
-– stage: Build
-  jobs:
-  – job: Build
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    continueOnError: true
-    steps:
-    – script: echo "hello to my first Build"
 pool:
   vmImage: 'windows-latest'
 
@@ -28,7 +17,16 @@ resources:
     name: Bhoomi-P/testing
     branch: dev
 
-steps:
+stages:
+– stage: Build
+  jobs:
+  – job: Build
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    continueOnError: true
+    steps:
+    – script: echo "hello to my first Build"
+
 - checkout: self
 - script: dir $(Build.SourcesDirectory)
 
